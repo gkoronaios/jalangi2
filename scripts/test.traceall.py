@@ -6,11 +6,13 @@ status = 0
 def test(prefix, file, rest):
     sj.create_and_cd_jalangi_tmp()
     ana = sj.execute_return_np(sj.JALANGI_SCRIPT+' --inlineIID --inlineSource --analysis ../src/js/sample_analyses/ChainedAnalyses.js --analysis ../src/js/runtime/SMemory.js --analysis ../src/js/sample_analyses/pldi16/TraceAll.js '+prefix+file+'.js '+rest, savestderr=True)
+    if isinstance(ana, bytes):
+        ana = ana.decode('utf-8', errors='replace')
     if 'analysis exception!!!' in ana:
-        print ana
-        print "{} failed".format(file)
+        print(ana)
+        print("{} failed".format(file))
     else:
-        print "{} passed".format(file)
+        print("{} passed".format(file))
 
     sj.cd_parent()
 
