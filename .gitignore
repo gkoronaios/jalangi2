@@ -1,3 +1,8 @@
 .idea
 node_modules
 *~
+cache/
+node_modules/
+experiments/runner/*.json
+!experiments/runner/package.json
+!experiments/runner/package-lock.json
